@@ -355,15 +355,22 @@ $PROJECTS = [
 
 /* Testimonials – PLACEHOLDER copy for the demo. Replace with approved client quotes. */
 $TESTIMONIALS = [
-    ['name' => 'Client Name', 'designation' => 'Head of Rural Marketing', 'organization' => 'Leading FMCG Company',
+    ['name' => 'Client Name', 'designation' => 'Head of Rural Marketing', 'organization' => 'Leading FMCG Company', 'audience' => 'corporate',
      'quote' => 'MART helped our leadership team see rural India through a completely new lens. The immersion translated directly into a sharper go-to-market plan.'],
-    ['name' => 'Client Name', 'designation' => 'Programme Director', 'organization' => 'International Development Agency',
+    ['name' => 'Client Name', 'designation' => 'Programme Director', 'organization' => 'International Development Agency', 'audience' => 'social',
      'quote' => 'A rare partner that understands both the market and the community. Their implementation teams delivered with discipline and genuine empathy.'],
-    ['name' => 'Client Name', 'designation' => 'CSR Head', 'organization' => 'Infrastructure Company',
+    ['name' => 'Client Name', 'designation' => 'CSR Head', 'organization' => 'Infrastructure Company', 'audience' => 'social',
      'quote' => 'From needs assessment to impact reporting, MART made our CSR programme more focused, more measurable and more meaningful for communities.'],
+    ['name' => 'Client Name', 'designation' => 'VP – Rural Business', 'organization' => 'Financial Services Company', 'audience' => 'corporate',
+     'quote' => 'Their research gave us a clear picture of rural customers and channels. We used it to redesign our distribution model and scale faster.'],
 ];
 
-$CLIENTS = ['USAID', 'Microsoft', 'Heifer International', 'Tata Steel', 'World Vision', 'World Bank', 'Hindustan Unilever', 'Novartis', 'Colgate-Palmolive', 'SFAC'];
+/* Homepage logo strip: [name, audience] — audience drives the personalised homepage. */
+$CLIENTS = [
+    ['USAID', 'social'], ['Microsoft', 'corporate'], ['Heifer International', 'social'], ['Tata Steel', 'corporate'],
+    ['World Vision', 'social'], ['World Bank', 'social'], ['Hindustan Unilever', 'corporate'], ['Novartis', 'corporate'],
+    ['Colgate-Palmolive', 'corporate'], ['SFAC', 'social'],
+];
 
 $STATS = [
     ['value' => 250, 'suffix' => '+', 'label' => 'Clients'],

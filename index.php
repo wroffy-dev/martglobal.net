@@ -12,11 +12,17 @@ include __DIR__ . '/includes/header.php';
     <div class="hero-content">
       <p class="eyebrow eyebrow-light"><span class="line"></span>MART Global Management Solutions</p>
       <h1>Leaders in Demystifying <span class="hl">Rural Markets</span> Since 1993</h1>
-      <p class="hero-text">For three decades we have helped businesses, governments and development institutions understand rural and emerging markets — and turn that understanding into strategy, innovation and impact at scale.</p>
+      <p class="hero-text" data-aud-only="default">For three decades we have helped businesses, governments and development institutions understand rural and emerging markets — and turn that understanding into strategy, innovation and impact at scale.</p>
+      <p class="hero-text" data-aud-only="corporate">For three decades we have helped businesses understand rural and emerging markets — and turn that understanding into research-led strategy, new business models and on-ground activation.</p>
+      <p class="hero-text" data-aud-only="social">For three decades we have helped governments, donors and foundations design and deliver programmes that improve livelihoods and create measurable impact at scale.</p>
       <div class="hero-actions">
-        <a class="btn btn-yellow" href="#projects">Explore Our Work <?= icon('arrow', 'icon icon-sm') ?></a>
+        <a class="btn btn-yellow" href="#projects" data-aud-only="default">Explore Our Work <?= icon('arrow', 'icon icon-sm') ?></a>
+        <a class="btn btn-yellow" href="#how-we-help" data-aud-only="corporate">Explore Corporate Solutions <?= icon('arrow', 'icon icon-sm') ?></a>
+        <a class="btn btn-yellow" href="#how-we-help" data-aud-only="social">Explore Social Solutions <?= icon('arrow', 'icon icon-sm') ?></a>
         <a class="btn btn-ghost" href="#contact">Talk to Us</a>
       </div>
+      <p class="aud-switch" data-aud-only="corporate">Showing content for businesses · <button type="button" data-aud-change>Change</button></p>
+      <p class="aud-switch" data-aud-only="social">Showing content for development organisations · <button type="button" data-aud-change>Change</button></p>
     </div>
     <ul class="hero-proof">
       <li><strong>30+</strong><span>Years in rural markets</span></li>
@@ -33,12 +39,14 @@ include __DIR__ . '/includes/header.php';
     <div class="section-head center reveal">
       <p class="eyebrow">How We Can Help</p>
       <h2>One partner across the entire value chain</h2>
-      <p class="lead">From strategy and business innovation to large-scale social impact and implementation, MART Global brings together expertise across the entire value chain.</p>
+      <p class="lead" data-aud-only="default">From strategy and business innovation to large-scale social impact and implementation, MART Global brings together expertise across the entire value chain.</p>
+      <p class="lead" data-aud-only="corporate">Research, strategy, business innovation and activation — built for companies growing in rural and emerging markets.</p>
+      <p class="lead" data-aud-only="social">Large-scale implementation, programme advisory, CSR and market linkages — built for lasting social impact.</p>
     </div>
 
     <div class="pillars">
       <?php foreach (['corporate', 'social'] as $cat): $c = get_category($cat); ?>
-      <article class="pillar pillar-<?= $cat ?> reveal">
+      <article class="pillar pillar-<?= $cat ?> reveal" data-aud="<?= $cat ?>">
         <div class="pillar-media" style="--img:url('<?= e($c['hero_image']) ?>')"></div>
         <div class="pillar-body">
           <span class="badge badge-<?= $cat ?>"><?= e(strtoupper($c['name'])) ?></span>
@@ -52,9 +60,9 @@ include __DIR__ . '/includes/header.php';
         </div>
       </article>
       <?php endforeach; ?>
-      <div class="pillar-bridge" aria-hidden="true"><span>+</span></div>
+      <div class="pillar-bridge" aria-hidden="true" data-aud-only="default"><span>+</span></div>
     </div>
-    <p class="pillars-note reveal">Most of our engagements draw on both. <a href="#focus-areas">See how they connect in our focus areas →</a></p>
+    <p class="pillars-note reveal" data-aud-only="default">Most of our engagements draw on both. <a href="#focus-areas">See how they connect in our focus areas →</a></p>
   </div>
 </section>
 
@@ -69,7 +77,7 @@ include __DIR__ . '/includes/header.php';
         <p class="eyebrow">Landmark Projects</p>
         <h2>Work that changed how markets reach people</h2>
       </div>
-      <div class="filter" role="group" aria-label="Filter projects">
+      <div class="filter" role="group" aria-label="Filter projects" data-aud-only="default">
         <button class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
         <button class="filter-btn" data-filter="corporate" aria-pressed="false">Corporate</button>
         <button class="filter-btn" data-filter="social" aria-pressed="false">Social</button>
@@ -128,7 +136,16 @@ include __DIR__ . '/includes/header.php';
 <?php component('how-else', [
     'label'    => 'Across Business & Communities',
     'text'     => "MART Global's work often sits at the intersection of business, communities and markets.",
-    'services' => get_services(['research-and-strategy', 'large-scale-program-implementation', 'business-model-innovation', 'csr-solutions']),
+    'aud_text' => [
+        'corporate' => ['Corporate Solutions', 'Everything we offer to help businesses succeed in rural and emerging markets.'],
+        'social'    => ['Social Solutions', 'Everything we offer to help programmes deliver lasting social impact.'],
+    ],
+    // Default mix, plus one set per audience for the personalised homepage
+    'services' => array_merge(
+        array_map(fn($s) => $s + ['aud_only' => 'default'], get_services(['research-and-strategy', 'large-scale-program-implementation', 'business-model-innovation', 'csr-solutions'])),
+        array_map(fn($s) => $s + ['aud_only' => 'corporate'], get_services_by_category('corporate')),
+        array_map(fn($s) => $s + ['aud_only' => 'social'], get_services_by_category('social'))
+    ),
 ]); ?>
 
 <!-- TESTIMONIALS -->
@@ -158,8 +175,8 @@ include __DIR__ . '/includes/header.php';
   <div class="container">
     <p class="clients-title reveal">Trusted by global institutions, governments and leading companies</p>
     <ul class="logo-grid reveal">
-      <?php foreach ($CLIENTS as $c): ?>
-      <li><span><?= e($c) ?></span></li>
+      <?php foreach ($CLIENTS as [$client_name, $client_aud]): ?>
+      <li data-aud="<?= e($client_aud) ?>"><span><?= e($client_name) ?></span></li>
       <?php endforeach; ?>
     </ul>
     <p class="clients-more reveal"><a class="text-link" href="<?= e(url('clients-partners')) ?>">View all clients &amp; partners by sector <?= icon('arrow', 'icon icon-sm') ?></a></p>
@@ -184,5 +201,7 @@ include __DIR__ . '/includes/header.php';
     </div>
   </div>
 </section>
+
+<?php component('audience-modal'); ?>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>

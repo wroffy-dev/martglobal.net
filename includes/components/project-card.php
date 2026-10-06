@@ -1,5 +1,5 @@
 <?php /** @var array $project */ ?>
-<article class="project-card reveal" data-category="<?= e($project['category']) ?>">
+<article class="project-card reveal" data-category="<?= e($project['category']) ?>" data-aud="<?= e($project['category']) ?>">
   <div class="project-media" style="--img:url('<?= e($project['image']) ?>')">
   </div>
   <div class="project-body">

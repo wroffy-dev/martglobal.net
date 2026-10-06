@@ -556,6 +556,61 @@ a:hover .text-link .icon, .text-link:hover .icon { transform: translateX(4px); }
 }
 
 /* ==========================================================================
+   Homepage audience personalisation
+   html.aud-corporate / html.aud-social are set on the homepage only.
+   [data-aud]      belongs to one side: hidden when the other side is chosen
+   [data-aud-only] shown only in that mode (default = no choice made)
+   ========================================================================== */
+html.aud-corporate [data-aud="social"],
+html.aud-social [data-aud="corporate"],
+html:not(.aud-corporate) [data-aud-only="corporate"],
+html:not(.aud-social) [data-aud-only="social"],
+html.aud-corporate [data-aud-only="default"],
+html.aud-social [data-aud-only="default"] { display: none !important; }
+
+/* One pillar: lay it out wide instead of half-width */
+html.aud-corporate .pillars, html.aud-social .pillars { grid-template-columns: 1fr; }
+html.aud-corporate .pillar, html.aud-social .pillar { display: grid; grid-template-columns: 5fr 7fr; }
+html.aud-corporate .pillar-media, html.aud-social .pillar-media { height: auto; min-height: 320px; }
+html.aud-corporate .focus-panel-cols, html.aud-social .focus-panel-cols { grid-template-columns: 1fr; }
+html.aud-corporate .focus-col ul, html.aud-social .focus-col ul { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 32px; }
+
+.aud-switch { margin: 22px 0 0; font-size: .9rem; color: rgba(255, 255, 255, .75); }
+.aud-switch button { background: none; border: 0; padding: 0; color: var(--yellow); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Popup */
+.aud-modal { position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; padding: 20px; background: rgba(4, 34, 63, .6); backdrop-filter: blur(4px); opacity: 0; transition: opacity .25s var(--ease); }
+.aud-modal[hidden] { display: none; }
+.aud-modal.is-open { opacity: 1; }
+.aud-dialog { position: relative; width: min(560px, 100%); background: #fff; border-radius: 20px; padding: 40px 36px 28px; box-shadow: var(--shadow-lg); border-top: 5px solid var(--yellow); transform: translateY(14px) scale(.98); transition: transform .3s var(--ease); }
+.aud-modal.is-open .aud-dialog { transform: none; }
+.aud-dialog h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 8px; }
+.aud-sub { color: var(--muted); margin-bottom: 26px; }
+.aud-close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--light); color: var(--charcoal); display: grid; place-items: center; transition: background .2s; }
+.aud-close:hover { background: var(--line); }
+.aud-options { display: grid; gap: 12px; }
+.aud-option { display: flex; align-items: center; gap: 16px; width: 100%; padding: 18px 20px; border: 1px solid var(--line); border-radius: 14px; background: #fff; text-align: left; transition: border-color .2s, box-shadow .2s, transform .2s var(--ease); }
+.aud-option:hover, .aud-option:focus-visible { border-color: var(--navy); box-shadow: var(--shadow); transform: translateY(-2px); }
+.aud-option-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--soft-blue); color: var(--navy); display: grid; place-items: center; flex-shrink: 0; }
+.aud-option[data-aud-choose="social"] .aud-option-icon { background: #e3f3ec; color: var(--social); }
+.aud-option strong { display: block; color: var(--charcoal); font-size: 1.05rem; }
+.aud-option small { display: block; color: var(--muted); font-size: .86rem; line-height: 1.45; margin-top: 2px; }
+.aud-arrow { margin-left: auto; color: var(--navy); }
+.aud-skip { display: block; margin: 20px auto 0; background: none; border: 0; color: var(--muted); font-weight: 600; font-size: .92rem; text-decoration: underline; text-underline-offset: 3px; }
+.aud-skip:hover { color: var(--navy); }
+
+@media (max-width: 900px) {
+  html.aud-corporate .pillar, html.aud-social .pillar { display: flex; }
+  html.aud-corporate .pillar-media, html.aud-social .pillar-media { min-height: 200px; }
+}
+@media (max-width: 640px) {
+  html.aud-corporate .focus-col ul, html.aud-social .focus-col ul { grid-template-columns: 1fr; }
+  .aud-dialog { padding: 32px 20px 22px; }
+  .aud-option { padding: 14px; gap: 12px; }
+  .aud-option-icon { width: 40px; height: 40px; }
+}
+
+/* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 1440px) {

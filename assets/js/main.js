@@ -136,7 +136,9 @@
   /* ---------- Testimonial slider ---------- */
   $$('[data-slider]').forEach((slider) => {
     const track = $('.slider-track', slider);
-    const slides = $$('.testimonial', track);
+    const allSlides = $$('.testimonial', track);
+    // Only count slides visible in the current homepage audience mode
+    const visible = () => allSlides.filter((el) => getComputedStyle(el).display !== 'none');
     const section = slider.closest('section');
     const prev = $('[data-slide="prev"]', section);
     const next = $('[data-slide="next"]', section);
@@ -144,15 +146,17 @@
     let index = 0;
 
     const perView = () => {
+      const slides = visible();
       if (!slides.length) return 1;
       return Math.max(1, Math.round(slider.clientWidth / slides[0].getBoundingClientRect().width));
     };
-    const maxIndex = () => Math.max(0, slides.length - perView());
+    const maxIndex = () => Math.max(0, visible().length - perView());
 
     const render = () => {
       index = Math.min(index, maxIndex());
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      const offset = index * (slides[0].getBoundingClientRect().width + gap);
+      const first = visible()[0];
+      const offset = first ? index * (first.getBoundingClientRect().width + gap) : 0;
       track.style.transform = `translateX(${-offset}px)`;
       if (prev) prev.disabled = index === 0;
       if (next) next.disabled = index >= maxIndex();
@@ -180,6 +184,7 @@
       x0 = null;
     });
     window.addEventListener('resize', render);
+    document.addEventListener('audiencechange', () => { index = 0; render(); });
     render();
   });
 
@@ -190,6 +195,74 @@
     $$('[data-cp-filter]').forEach((c) => { c.classList.toggle('is-active', c === chip); c.setAttribute('aria-pressed', String(c === chip)); });
     $$('[data-cp-sector]').forEach((card) => card.classList.toggle('is-hidden', f !== 'all' && card.dataset.cpSector !== f));
   }));
+
+  /* ---------- Homepage audience picker ---------- */
+  // Asks once whether the visitor is a business or a development organisation,
+  // remembers the answer and personalises the homepage only.
+  const audModal = $('#audModal');
+  if (audModal) {
+    const KEY = 'mart_audience';
+    const DISMISSED = 'mart_audience_dismissed';
+    const store = {
+      get: (s, k) => { try { return s.getItem(k); } catch (e) { return null; } },
+      set: (s, k, v) => { try { v === null ? s.removeItem(k) : s.setItem(k, v); } catch (e) { /* storage blocked */ } },
+    };
+    const root = document.documentElement;
+    let lastFocus = null;
+
+    const applyAudience = (aud, initial = false) => {
+      root.classList.remove('aud-corporate', 'aud-social');
+      if (aud) root.classList.add('aud-' + aud);
+      // Reset the project filter so it doesn't hide cards in the new mode
+      const all = $('.filter-btn[data-filter="all"]');
+      if (all) all.click();
+      // Pre-select the enquiry form interest
+      $$('.enquiry-form select[name="interest"]').forEach((sel) => { sel.value = aud || 'corporate'; });
+      // Elements revealed by a mode switch should not wait for the scroll animation
+      if (!initial) $$('.reveal').forEach((el) => el.classList.add('is-visible'));
+      document.dispatchEvent(new Event('audiencechange'));
+    };
+    const openModal = () => {
+      lastFocus = document.activeElement;
+      audModal.hidden = false;
+      requestAnimationFrame(() => audModal.classList.add('is-open'));
+      document.body.classList.add('nav-open');
+      $('[data-aud-choose]', audModal).focus();
+    };
+    const closeModal = () => {
+      audModal.classList.remove('is-open');
+      document.body.classList.remove('nav-open');
+      setTimeout(() => { audModal.hidden = true; }, 250);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+
+    $$('[data-aud-choose]', audModal).forEach((btn) => btn.addEventListener('click', () => {
+      const aud = btn.dataset.audChoose;
+      store.set(localStorage, KEY, aud);
+      applyAudience(aud);
+      closeModal();
+      window.scrollTo({ top: 0 });
+    }));
+    // Close (×), backdrop, Esc: keep whatever is showing now
+    $('.aud-close', audModal).addEventListener('click', () => { store.set(sessionStorage, DISMISSED, '1'); closeModal(); });
+    audModal.addEventListener('click', (e) => { if (e.target === audModal) { store.set(sessionStorage, DISMISSED, '1'); closeModal(); } });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !audModal.hidden) { store.set(sessionStorage, DISMISSED, '1'); closeModal(); } });
+    // "Just exploring": the standard homepage
+    $('.aud-skip', audModal).addEventListener('click', () => {
+      store.set(localStorage, KEY, null);
+      store.set(sessionStorage, DISMISSED, '1');
+      applyAudience(null);
+      closeModal();
+    });
+    $$('[data-aud-change]').forEach((b) => b.addEventListener('click', openModal));
+
+    const saved = store.get(localStorage, KEY);
+    if (saved === 'corporate' || saved === 'social') {
+      applyAudience(saved, true);
+    } else if (!store.get(sessionStorage, DISMISSED)) {
+      setTimeout(openModal, 600);
+    }
+  }
 
   /* ---------- Demo forms (validated client-side; no backend in this build) ---------- */
   const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);

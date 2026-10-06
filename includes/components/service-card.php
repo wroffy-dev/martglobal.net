@@ -1,8 +1,12 @@
 <?php
-/** @var array $service  @var bool $with_image */
+/**
+ * @var array $service  @var bool $with_image
+ * @var string|null $aud_only  homepage audience mode this card is limited to (default|corporate|social)
+ */
 $with_image ??= true;
+$aud_only   ??= null;
 ?>
-<a class="service-card reveal" href="<?= e(service_url($service)) ?>">
+<a class="service-card reveal" href="<?= e(service_url($service)) ?>"<?= $aud_only ? ' data-aud-only="' . e($aud_only) . '"' : '' ?>>
   <?php if ($with_image): ?>
   <span class="service-card-media" style="--img:url('<?= e($service['hero_image']) ?>')"></span>
   <?php endif; ?>

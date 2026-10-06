@@ -15,7 +15,9 @@ $areas = get_focus_areas();
     <div class="section-head reveal">
       <p class="eyebrow">Focus Areas</p>
       <h2><?= e($heading) ?></h2>
-      <p class="lead"><?= e($subheading) ?></p>
+      <p class="lead" data-aud-only="default"><?= e($subheading) ?></p>
+      <p class="lead" data-aud-only="corporate">Explore the areas where our research, strategy and business innovation help companies grow.</p>
+      <p class="lead" data-aud-only="social">Explore the areas where our programmes, advisory and partnerships create lasting impact.</p>
     </div>
 
     <div class="focus-grid" role="tablist" aria-label="Focus areas">
@@ -35,11 +37,13 @@ $areas = get_focus_areas();
       <div class="focus-panel-item" data-focus-panel="<?= e($a['slug']) ?>"<?= $i === 0 ? '' : ' hidden' ?>>
         <div class="focus-panel-head">
           <h3><?= e($a['name']) ?></h3>
-          <p>How MART Global helps across both capability pillars.</p>
+          <p data-aud-only="default">How MART Global helps across both capability pillars.</p>
+          <p data-aud-only="corporate">How MART Global helps businesses in this area.</p>
+          <p data-aud-only="social">How MART Global helps development organisations in this area.</p>
         </div>
         <div class="focus-panel-cols">
           <?php foreach (['corporate', 'social'] as $cat): ?>
-          <div class="focus-col">
+          <div class="focus-col" data-aud="<?= $cat ?>">
             <p class="eyebrow"><span class="dot dot-<?= $cat ?>"></span><?= e(get_category($cat)['name']) ?> Capabilities</p>
             <ul>
               <?php foreach ($split[$cat] as $s): ?>

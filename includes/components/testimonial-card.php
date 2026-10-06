@@ -2,7 +2,7 @@
 /** @var array $t */
 $initials = implode('', array_map(fn($w) => mb_substr($w, 0, 1), array_slice(explode(' ', $t['organization']), 0, 2)));
 ?>
-<figure class="testimonial">
+<figure class="testimonial"<?= isset($t['audience']) ? ' data-aud="' . e($t['audience']) . '"' : '' ?>>
   <span class="testimonial-quote-icon"><?= icon('quote') ?></span>
   <blockquote><?= e($t['quote']) ?></blockquote>
   <figcaption>

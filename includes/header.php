@@ -20,6 +20,9 @@ $nav_link = static function (string $key, string $href, string $label) use ($cur
 <head>
 <meta charset="utf-8">
 <script>document.documentElement.classList.add('js')</script>
+<?php if (str_contains($body_class, 'page-home')): ?>
+<script>try{var a=localStorage.getItem('mart_audience');if(a==='corporate'||a==='social')document.documentElement.classList.add('aud-'+a)}catch(e){}</script>
+<?php endif; ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= e($page_title) ?></title>
 <meta name="description" content="<?= e($page_description) ?>">
