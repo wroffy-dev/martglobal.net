@@ -32,7 +32,8 @@ $nav_link = static function (string $key, string $href, string $label) use ($cur
 <meta property="og:url" content="<?= e($canonical) ?>">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#063563">
-<link rel="icon" href="<?= e(asset('images/favicon.svg')) ?>" type="image/svg+xml">
+<link rel="icon" href="<?= e(asset('images/favicon.png')) ?>" type="image/png">
+<link rel="apple-touch-icon" href="<?= e(asset('images/apple-touch-icon.png')) ?>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">

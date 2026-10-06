@@ -43,7 +43,7 @@ Each service has `related_services` (many-to-many, usually the other category), 
 
 ## Before going live — replace placeholders
 
-- **Logo:** `includes/logo.php` is a placeholder wordmark — swap in the official logo.
+- **Logo:** official logo in `assets/images/logo.png`; `logo-light.png` is a recoloured version for dark backgrounds (home hero header, footer).
 - **Photography:** remote placeholder images (Unsplash) — replace with MART's own photos in `assets/images/` (WebP recommended). Every image area has a navy fallback.
 - **Testimonials:** placeholder quotes — replace with approved client testimonials.
 - **Client logos:** shown as text wordmarks — replace with approved logo files.

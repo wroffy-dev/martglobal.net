@@ -117,23 +117,21 @@ a:hover .text-link .icon, .text-link:hover .icon { transform: translateX(4px); }
   background: rgba(255, 255, 255, .97); box-shadow: 0 1px 0 var(--line), 0 6px 24px rgba(6, 53, 99, .06);
   backdrop-filter: saturate(160%) blur(10px);
 }
-.header-inner { display: flex; align-items: center; height: 100%; gap: 24px; }
+.header-inner { display: flex; align-items: center; height: 100%; gap: 24px; max-width: 1360px; }
 
 .brand { display: inline-flex; align-items: center; color: var(--navy); }
-.logo { display: inline-flex; align-items: center; gap: 10px; }
-.logo-mark { width: 40px; height: 40px; color: var(--navy); }
-.logo-text { display: flex; flex-direction: column; line-height: 1; letter-spacing: .08em; }
-.logo-text strong { font-size: 1.2rem; font-weight: 800; color: var(--navy); }
-.logo-text span { font-size: .62rem; font-weight: 700; color: var(--muted); letter-spacing: .32em; margin-top: 3px; }
-.page-home .site-header:not(.is-solid):not(.mega-open) .logo-text strong { color: #fff; }
-.page-home .site-header:not(.is-solid):not(.mega-open) .logo-text span { color: rgba(255, 255, 255, .75); }
-.page-home .site-header:not(.is-solid):not(.mega-open) .logo-mark { color: rgba(255, 255, 255, .14); }
+.logo { display: inline-flex; align-items: center; }
+.logo img { height: 42px; width: auto; }
+.logo-light { display: none; }
+/* Transparent header over the dark home hero, and dark footer: use the light logo */
+.page-home .site-header:not(.is-solid):not(.mega-open) .logo-dark, .brand-light .logo-dark { display: none; }
+.page-home .site-header:not(.is-solid):not(.mega-open) .logo-light, .brand-light .logo-light { display: block; }
 
 .main-nav { margin-left: auto; }
 .nav-list { display: flex; align-items: center; gap: 2px; }
 .nav-link {
   display: inline-flex; align-items: center; gap: 4px; padding: 10px 12px; border-radius: 8px;
-  font-weight: 500; font-size: .93rem; color: var(--charcoal); background: none; border: 0;
+  font-weight: 500; font-size: .93rem; color: var(--charcoal); background: none; border: 0; white-space: nowrap;
   position: relative; transition: color .2s, background .2s;
 }
 .nav-link:hover, .nav-link.is-active, .mega-toggle[aria-expanded="true"] { color: var(--navy); background: var(--light); }
@@ -476,9 +474,7 @@ a:hover .text-link .icon, .text-link:hover .icon { transform: translateX(4px); }
 .site-footer { background: #031a31; color: rgba(255, 255, 255, .7); padding: 80px 0 0; font-size: .94rem; }
 .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1.1fr 1.3fr 1.5fr; gap: 40px; padding-bottom: 56px; }
 .footer-brand p { margin: 20px 0 24px; line-height: 1.7; max-width: 340px; }
-.brand-light .logo-mark { color: rgba(255, 255, 255, .1); }
-.brand-light .logo-text strong { color: #fff; }
-.brand-light .logo-text span { color: rgba(255, 255, 255, .6); }
+.brand-light .logo img { height: 52px; }
 .social-links { display: flex; gap: 10px; }
 .social-links a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .18); display: grid; place-items: center; color: #fff; transition: background .2s, color .2s, border-color .2s; }
 .social-links a:hover { background: var(--yellow); color: var(--navy); border-color: var(--yellow); }
@@ -512,15 +508,21 @@ a:hover .text-link .icon, .text-link:hover .icon { transform: translateX(4px); }
 /* ==========================================================================
    Responsive
    ========================================================================== */
-@media (max-width: 1240px) {
+@media (max-width: 1440px) {
   .nav-link { padding: 10px 9px; font-size: .9rem; }
+}
+
+@media (max-width: 1240px) {
   .footer-top { grid-template-columns: 1fr 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
   .main-nav, .header-cta { display: none; }
   .menu-toggle { display: block; margin-left: auto; }
+}
+
+@media (max-width: 1100px) {
   .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .focus-grid { grid-template-columns: repeat(2, 1fr); }
   .steps-5, .steps-4 { grid-template-columns: repeat(2, 1fr); }
@@ -545,6 +547,7 @@ a:hover .text-link .icon, .text-link:hover .icon { transform: translateX(4px); }
 
 @media (max-width: 640px) {
   :root { --header-h: 66px; }
+  .logo img { height: 38px; }
   .container { padding: 0 18px; }
   body { font-size: 15.5px; }
   .hero { min-height: auto; padding: calc(var(--header-h) + 48px) 0 64px; }
