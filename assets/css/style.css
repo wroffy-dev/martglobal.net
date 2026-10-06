@@ -351,7 +351,7 @@ a:hover .text-link .icon, .text-link:hover .icon { transform: translateX(4px); }
 .stat { text-align: center; padding: 8px 16px; }
 .stat + .stat { border-left: 1px solid rgba(255, 255, 255, .15); }
 .stat strong { display: block; font-size: clamp(2.2rem, 4vw, 3.3rem); font-weight: 800; color: var(--yellow); letter-spacing: -.03em; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.stat span { color: rgba(255, 255, 255, .78); font-size: .95rem; }
+.stat > span { color: rgba(255, 255, 255, .78); font-size: .95rem; }
 
 /* ---------- How else ---------- */
 .how-else { background: linear-gradient(180deg, #fff 0%, var(--soft-blue) 100%); }
