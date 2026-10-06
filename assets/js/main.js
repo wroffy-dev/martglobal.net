@@ -92,6 +92,12 @@
   };
   focusFromHash();
   window.addEventListener('hashchange', focusFromHash);
+  // Homepage audience mode hides some cards: keep a visible one selected
+  document.addEventListener('audiencechange', () => {
+    const shown = focusCards.filter((c) => getComputedStyle(c).display !== 'none');
+    const current = shown.find((c) => c.getAttribute('aria-selected') === 'true');
+    if (shown.length && !current) selectFocus(shown[0].dataset.focus, false);
+  });
 
   /* ---------- Project filter ---------- */
   $$('.filter-btn').forEach((btn) => btn.addEventListener('click', () => {
@@ -202,7 +208,6 @@
   const audModal = $('#audModal');
   if (audModal) {
     const KEY = 'mart_audience';
-    const DISMISSED = 'mart_audience_dismissed';
     const store = {
       get: (s, k) => { try { return s.getItem(k); } catch (e) { return null; } },
       set: (s, k, v) => { try { v === null ? s.removeItem(k) : s.setItem(k, v); } catch (e) { /* storage blocked */ } },
@@ -243,14 +248,13 @@
       closeModal();
       window.scrollTo({ top: 0 });
     }));
-    // Close (×), backdrop, Esc: keep whatever is showing now
-    $('.aud-close', audModal).addEventListener('click', () => { store.set(sessionStorage, DISMISSED, '1'); closeModal(); });
-    audModal.addEventListener('click', (e) => { if (e.target === audModal) { store.set(sessionStorage, DISMISSED, '1'); closeModal(); } });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !audModal.hidden) { store.set(sessionStorage, DISMISSED, '1'); closeModal(); } });
+    // Close (×), backdrop, Esc: keep whatever is showing now; asked again next visit
+    $('.aud-close', audModal).addEventListener('click', closeModal);
+    audModal.addEventListener('click', (e) => { if (e.target === audModal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !audModal.hidden) closeModal(); });
     // "Just exploring": the standard homepage
     $('.aud-skip', audModal).addEventListener('click', () => {
       store.set(localStorage, KEY, null);
-      store.set(sessionStorage, DISMISSED, '1');
       applyAudience(null);
       closeModal();
     });
@@ -259,7 +263,8 @@
     const saved = store.get(localStorage, KEY);
     if (saved === 'corporate' || saved === 'social') {
       applyAudience(saved, true);
-    } else if (!store.get(sessionStorage, DISMISSED)) {
+    } else {
+      // No side chosen yet (or "Just exploring" last time): ask on every homepage visit
       setTimeout(openModal, 600);
     }
   }

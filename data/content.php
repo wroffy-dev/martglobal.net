@@ -263,49 +263,49 @@ $SERVICES = [
 
 $FOCUS_AREAS = [
     'agriculture' => [
-        'name' => 'Agriculture', 'icon' => 'leaf',
+        'name' => 'Agriculture', 'audience' => 'corporate', 'icon' => 'leaf',
         'description' => 'Farmer producer organisations, agribusiness and value chains.',
         'image' => $IMG('photo-1500937386664-56d1dfef3854', 900),
         'services' => ['research-and-strategy', 'business-model-innovation', 'strategic-activation', 'large-scale-program-implementation', 'project-management-advisory', 'market-linkages'],
     ],
     'rural-markets' => [
-        'name' => 'Rural Markets', 'icon' => 'store',
+        'name' => 'Rural Markets', 'audience' => 'corporate', 'icon' => 'store',
         'description' => 'Understanding and reaching the rural consumer.',
         'image' => $IMG('photo-1534723452862-4c874018d66d', 900),
         'services' => ['research-and-strategy', 'strategic-activation', 'rural-immersion-program', 'market-linkages', 'project-management-advisory'],
     ],
     'livelihoods' => [
-        'name' => 'Livelihoods', 'icon' => 'users',
+        'name' => 'Livelihoods', 'audience' => 'social', 'icon' => 'users',
         'description' => 'Farm, non-farm and livestock livelihood promotion.',
         'image' => $IMG('photo-1593113598332-cd288d649433', 900),
         'services' => ['research-and-strategy', 'rural-immersion-program', 'large-scale-program-implementation', 'csr-solutions', 'market-linkages'],
     ],
     'csr-sustainability' => [
-        'name' => 'CSR & Sustainability', 'icon' => 'heart',
+        'name' => 'CSR & Sustainability', 'audience' => 'social', 'icon' => 'heart',
         'description' => 'Responsible business that creates shared value.',
         'image' => $IMG('photo-1559027615-cd4628902d4a', 900),
         'services' => ['research-and-strategy', 'strategic-activation', 'csr-solutions', 'large-scale-program-implementation'],
     ],
     'market-linkages' => [
-        'name' => 'Market Linkages', 'icon' => 'link',
+        'name' => 'Market Linkages', 'audience' => 'corporate', 'icon' => 'link',
         'description' => 'Connecting producers to buyers, finance and markets.',
         'image' => $IMG('photo-1488459716781-31db52582fe9', 900),
         'services' => ['business-model-innovation', 'research-and-strategy', 'market-linkages', 'large-scale-program-implementation'],
     ],
     'entrepreneurship' => [
-        'name' => 'Entrepreneurship', 'icon' => 'spark',
+        'name' => 'Entrepreneurship', 'audience' => 'social', 'icon' => 'spark',
         'description' => 'Women, youth and rural entrepreneur networks.',
         'image' => $IMG('photo-1556740758-90de374c12ad', 900),
         'services' => ['business-model-innovation', 'strategic-activation', 'market-linkages', 'csr-solutions', 'large-scale-program-implementation'],
     ],
     'community-development' => [
-        'name' => 'Community Development', 'icon' => 'home',
+        'name' => 'Community Development', 'audience' => 'social', 'icon' => 'home',
         'description' => 'Strong community institutions and inclusive growth.',
         'image' => $IMG('photo-1469571486292-0ba58a3f068b', 900),
         'services' => ['strategic-activation', 'research-and-strategy', 'large-scale-program-implementation', 'csr-solutions', 'project-management-advisory'],
     ],
     'business-innovation' => [
-        'name' => 'Business Innovation', 'icon' => 'bulb',
+        'name' => 'Business Innovation', 'audience' => 'corporate', 'icon' => 'bulb',
         'description' => 'Inclusive models for low-income and last-mile markets.',
         'image' => $IMG('photo-1531482615713-2afd69097998', 900),
         'services' => ['business-model-innovation', 'research-and-strategy', 'strategic-activation', 'market-linkages', 'project-management-advisory'],

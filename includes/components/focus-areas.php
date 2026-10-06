@@ -22,7 +22,7 @@ $areas = get_focus_areas();
 
     <div class="focus-grid" role="tablist" aria-label="Focus areas">
       <?php foreach ($areas as $i => $a): ?>
-      <button class="focus-card reveal" role="tab" id="tab-<?= e($a['slug']) ?>" data-focus="<?= e($a['slug']) ?>"
+      <button class="focus-card reveal" role="tab" id="tab-<?= e($a['slug']) ?>" data-focus="<?= e($a['slug']) ?>" data-aud="<?= e($a['audience']) ?>"
               aria-selected="<?= $i === 0 ? 'true' : 'false' ?>" aria-controls="focus-panel"
               style="--img:url('<?= e($a['image']) ?>')">
         <span class="focus-card-icon"><?= icon($a['icon']) ?></span>
