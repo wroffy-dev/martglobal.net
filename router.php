@@ -18,6 +18,8 @@ $_SERVER['SCRIPT_NAME'] = '/index.php'; // keeps BASE_URL at the root
 
 if ($path === '/' || $path === '/index.php') {
     require __DIR__ . '/index.php';
+} elseif (preg_match('#^/clients-partners/?$#', $path)) {
+    require __DIR__ . '/clients-partners.php';
 } elseif (preg_match('#^/(corporate|social)/?$#', $path, $m)) {
     $_GET['category'] = $m[1];
     require __DIR__ . '/category.php';

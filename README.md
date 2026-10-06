@@ -49,3 +49,9 @@ Each service has `related_services` (many-to-many, usually the other category), 
 - **Client logos:** shown as text wordmarks — replace with approved logo files.
 - **Project impact metrics and stats:** verify figures with MART.
 - **Forms:** validated client-side only in this demo; no submissions are sent or stored.
+
+## Clients & Partners page
+
+`/clients-partners` groups partners by 11 sectors (data in `data/clients.php`). Three design options are available for review:
+`/clients-partners?layout=a` (sector explorer tabs, default), `?layout=b` (filterable sector cards), `?layout=c` (editorial numbered rows).
+The client names and generated logos are **samples** — replace them with MART's confirmed client list and approved logo files.

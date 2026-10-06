@@ -21,6 +21,7 @@
           <li><a href="<?= e(url('social')) ?>">Social</a></li>
           <li><a href="<?= e(url('#focus-areas')) ?>">Focus Areas</a></li>
           <li><a href="<?= e(url('#projects')) ?>">Projects</a></li>
+          <li><a href="<?= e(url('clients-partners')) ?>">Clients &amp; Partners</a></li>
           <li><a href="<?= e(url('#contact')) ?>">Contact</a></li>
         </ul>
       </div>

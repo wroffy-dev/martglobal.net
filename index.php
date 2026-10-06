@@ -162,6 +162,7 @@ include __DIR__ . '/includes/header.php';
       <li><span><?= e($c) ?></span></li>
       <?php endforeach; ?>
     </ul>
+    <p class="clients-more reveal"><a class="text-link" href="<?= e(url('clients-partners')) ?>">View all clients &amp; partners by sector <?= icon('arrow', 'icon icon-sm') ?></a></p>
   </div>
 </section>
 

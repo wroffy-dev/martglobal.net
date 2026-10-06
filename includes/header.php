@@ -61,6 +61,7 @@ $nav_link = static function (string $key, string $href, string $label) use ($cur
         <?php endforeach; ?>
         <li><?= $nav_link('focus', url('#focus-areas'), 'Focus Areas') ?></li>
         <li><?= $nav_link('projects', url('#projects'), 'Projects') ?></li>
+        <li><?= $nav_link('clients', url('clients-partners'), 'Clients & Partners') ?></li>
         <li><?= $nav_link('contact', url('#contact'), 'Contact') ?></li>
       </ul>
     </nav>
@@ -96,6 +97,7 @@ $nav_link = static function (string $key, string $href, string $label) use ($cur
     <?php endforeach; ?>
     <a class="m-link" href="<?= e(url('#focus-areas')) ?>">Focus Areas</a>
     <a class="m-link" href="<?= e(url('#projects')) ?>">Projects</a>
+    <a class="m-link" href="<?= e(url('clients-partners')) ?>">Clients &amp; Partners</a>
     <a class="m-link" href="<?= e(url('#about')) ?>">About</a>
     <a class="m-link" href="<?= e(url('#contact')) ?>">Contact</a>
   </nav>

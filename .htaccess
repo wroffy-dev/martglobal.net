@@ -12,6 +12,8 @@ DirectoryIndex index.php
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
+  RewriteRule ^clients-partners/?$ clients-partners.php [L,QSA]
+
   # /corporate, /social
   RewriteRule ^(corporate|social)/?$ category.php?category=$1 [L,QSA]
 

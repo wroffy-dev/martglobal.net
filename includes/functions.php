@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../data/content.php';
+require_once __DIR__ . '/../data/clients.php';
 
 /** HTML-escape. */
 function e(?string $s): string
