@@ -611,6 +611,67 @@ html.aud-corporate .focus-col ul, html.aud-social .focus-col ul { display: grid;
 }
 
 /* ==========================================================================
+   Service page: research segments, social research framework, quote
+   ========================================================================== */
+.segment-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; counter-reset: none; }
+.segment { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 26px 22px; border-radius: var(--radius); color: #fff; overflow: hidden;
+  /* blue → green progression, echoing the original MART graphic */
+  background: color-mix(in srgb, #2f6fbe calc(100% - var(--i) * 25%), #5aa43a);
+  transition: transform .3s var(--ease), box-shadow .3s; }
+.segment:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.segment-icon { width: 46px; height: 46px; border-radius: 12px; background: rgba(255, 255, 255, .18); display: grid; place-items: center; }
+.segment-num { position: absolute; top: 18px; right: 20px; font-size: 1.6rem; font-weight: 800; color: rgba(255, 255, 255, .25); }
+.segment strong { font-size: 1.05rem; line-height: 1.35; }
+
+.sr-clients { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; }
+.sr-clients li { padding: 9px 16px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-weight: 600; font-size: .9rem; color: var(--charcoal); }
+
+.framework {
+  --fw1: #3f6fc4; --fw2: #31b3aa; --fw3: #6aa843; --fw4: #33a85f;
+  display: grid; grid-template-columns: 1fr 340px 1fr; grid-template-rows: auto auto; gap: 24px 36px; align-items: center;
+  grid-template-areas: "c1 wheel c2" "c3 wheel c4";
+}
+.fw-wheel { grid-area: wheel; position: relative; width: 340px; height: 340px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; }
+.fw-q { position: relative; color: #fff; font-weight: 600; font-size: .9rem; line-height: 1.25; text-align: center; }
+/* Labels sit in the safe area near the centre of the wheel so the curve never clips them */
+.fw-q span { position: absolute; width: 64%; }
+.fw-q1 { background: var(--fw1); border-top-left-radius: 100%; }
+.fw-q2 { background: var(--fw2); border-top-right-radius: 100%; }
+.fw-q3 { background: var(--fw3); border-bottom-left-radius: 100%; }
+.fw-q4 { background: var(--fw4); border-bottom-right-radius: 100%; }
+.fw-q1 span { right: 12%; bottom: 26%; } .fw-q2 span { left: 12%; bottom: 26%; }
+.fw-q3 span { right: 12%; top: 26%; }    .fw-q4 span { left: 12%; top: 26%; }
+.fw-hub { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: #fff; color: var(--navy); display: grid; place-items: center; box-shadow: var(--shadow); }
+.fw-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; border-top: 4px solid var(--c); }
+.fw-c1 { grid-area: c1; --c: var(--fw1); } .fw-c2 { grid-area: c2; --c: var(--fw2); }
+.fw-c3 { grid-area: c3; --c: var(--fw3); } .fw-c4 { grid-area: c4; --c: var(--fw4); }
+.fw-card h3 { display: flex; align-items: center; gap: 10px; font-size: 1.08rem; margin-bottom: 12px; }
+.fw-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); flex-shrink: 0; }
+.fw-card li { position: relative; padding: 5px 0 5px 18px; color: var(--text); font-size: .95rem; }
+.fw-card li::before { content: ''; position: absolute; left: 0; top: 14px; width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+
+.service-quote { margin: 0 auto; max-width: 860px; text-align: center; padding: 48px 40px; border-radius: 20px; background: var(--navy); color: #fff; position: relative; }
+.service-quote-mark { width: 52px; height: 52px; border-radius: 50%; background: var(--yellow); color: var(--navy); display: inline-grid; place-items: center; margin-bottom: 20px; }
+.service-quote blockquote { margin: 0 0 22px; font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.55; font-weight: 500; }
+.service-quote figcaption strong { display: block; color: var(--yellow); font-size: 1.05rem; }
+.service-quote figcaption span { color: rgba(255, 255, 255, .75); font-size: .92rem; }
+
+@media (max-width: 1100px) {
+  .segment-list { grid-template-columns: repeat(3, 1fr); }
+  .framework { grid-template-columns: 1fr 1fr; grid-template-areas: "wheel wheel" "c1 c2" "c3 c4"; }
+  .fw-wheel { justify-self: center; }
+}
+@media (max-width: 640px) {
+  .segment-list { grid-template-columns: 1fr; gap: 10px; }
+  .segment { flex-direction: row; align-items: center; padding: 16px 18px; }
+  .segment-num { position: static; order: 3; margin-left: auto; font-size: 1.2rem; }
+  .framework { grid-template-columns: 1fr; grid-template-areas: "wheel" "c1" "c2" "c3" "c4"; gap: 14px; }
+  .fw-wheel { width: 280px; height: 280px; }
+  .fw-q { font-size: .76rem; }
+  .service-quote { padding: 36px 22px; }
+}
+
+/* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 1440px) {

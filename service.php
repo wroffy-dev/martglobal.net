@@ -49,6 +49,8 @@ $cross_text = $service['category'] === 'corporate'
 <div class="service-subnav">
   <div class="container subnav-inner">
     <a href="#what-we-do">What We Do</a>
+    <?php if (!empty($service['research_segments'])): ?><a href="#segments">Business Research</a><?php endif; ?>
+    <?php if (!empty($service['social_research'])): ?><a href="#social-research">Social Research</a><?php endif; ?>
     <a href="#approach">Our Approach</a>
     <a href="#impact-areas">Impact</a>
     <a href="#related-projects">Projects</a>
@@ -67,7 +69,7 @@ $cross_text = $service['category'] === 'corporate'
       <?php endforeach; ?>
     </div>
     <aside class="offer-card reveal">
-      <h3>Key offerings</h3>
+      <h3><?= e($service['offerings_title'] ?? 'Key offerings') ?></h3>
       <ul class="check-list">
         <?php foreach ($service['offerings'] as $o): ?>
         <li><?= icon('check', 'icon icon-sm') ?><?= e($o) ?></li>
@@ -82,6 +84,77 @@ $cross_text = $service['category'] === 'corporate'
     </aside>
   </div>
 </section>
+
+<?php if (!empty($service['research_segments'])): ?>
+<!-- RESEARCH SEGMENTS -->
+<section class="section section-tight" id="segments">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Business Research</p>
+      <h2>Our research spans</h2>
+    </div>
+    <ol class="segment-list">
+      <?php foreach ($service['research_segments'] as $i => [$seg_name, $seg_icon]): ?>
+      <li class="segment reveal" style="--i:<?= $i ?>">
+        <span class="segment-icon"><?= icon($seg_icon) ?></span>
+        <span class="segment-num"><?= str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) ?></span>
+        <strong><?= e($seg_name) ?></strong>
+      </li>
+      <?php endforeach; ?>
+    </ol>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php if (!empty($service['social_research'])): $sr = $service['social_research']; ?>
+<!-- SOCIAL RESEARCH -->
+<section class="section section-light" id="social-research">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Social Research</p>
+      <h2>Research for Corporate, Government &amp; Civil Society</h2>
+      <p class="lead"><?= e($sr['intro']) ?></p>
+    </div>
+    <ul class="sr-clients reveal" aria-label="Social research clients">
+      <?php foreach ($sr['clients'] as $client): ?>
+      <li><?= e($client) ?></li>
+      <?php endforeach; ?>
+    </ul>
+
+    <div class="framework reveal">
+      <div class="fw-wheel" aria-hidden="true">
+        <?php foreach ($sr['framework'] as $i => [$fw_title]): ?>
+        <span class="fw-q fw-q<?= $i + 1 ?>"><span><?= e($fw_title) ?></span></span>
+        <?php endforeach; ?>
+        <span class="fw-hub"><?= icon('spark') ?></span>
+      </div>
+      <?php foreach ($sr['framework'] as $i => [$fw_title, $fw_items]): ?>
+      <div class="fw-card fw-c<?= $i + 1 ?>">
+        <h3><span class="fw-dot"></span><?= e($fw_title) ?></h3>
+        <ul>
+          <?php foreach ($fw_items as $item): ?>
+          <li><?= e($item) ?></li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php if (!empty($service['testimonial'])): $st = $service['testimonial']; ?>
+<!-- SERVICE TESTIMONIAL -->
+<section class="section section-tight">
+  <div class="container">
+    <figure class="service-quote reveal">
+      <span class="service-quote-mark"><?= icon('quote') ?></span>
+      <blockquote><?= e($st['quote']) ?></blockquote>
+      <figcaption><strong><?= e($st['name']) ?></strong><span><?= e($st['designation']) ?></span></figcaption>
+    </figure>
+  </div>
+</section>
+<?php endif; ?>
 
 <!-- APPROACH -->
 <section class="section section-light" id="approach">

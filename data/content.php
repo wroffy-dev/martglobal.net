@@ -55,10 +55,35 @@ $SERVICES = [
         'short_description' => 'Consumer, market and ecosystem research that turns rural complexity into clear, actionable strategy.',
         'intro'             => 'Three decades of listening to rural India. We translate deep market understanding into strategies that work on the ground — not just on paper.',
         'full_description'  => [
-            'MART Global conducts market and business research for corporates, international non-profit institutions and government organisations. Our expertise lies in understanding emerging markets and Base of the Pyramid (BoP) segments — their ecosystems, behaviours and dynamics.',
-            'We combine quantitative studies with ethnographic immersion, so every recommendation is grounded in how rural consumers, retailers and communities actually think, buy and live.',
+            'MART conducts a range of market and business research for a variety of clients including corporate, international non-profit institutions and government sector organizations.',
+            'The Market Planning tool (MART-MAS) developed by MART, and ethnography research tools like Participatory Rural Appraisal, are extensively used. Our research spans the segments below.',
         ],
-        'offerings'         => ['Rural consumer & shopper insight', 'Market sizing & entry strategy', 'Go-to-market & distribution strategy', 'Baseline, mid-line & impact evaluations', 'Social & policy research', 'Ecosystem & value-chain mapping'],
+        'offerings_title'   => 'We specialize in',
+        'offerings'         => ['Qualitative Research', 'Quantitative Research', 'MART-MAS Market Planning Tool', 'Ethnography Research', 'Participatory Rural Appraisal (PRA)'],
+        /* Business research segments (from the existing MART website) */
+        'research_segments' => [
+            ['Profiling & Segmentation Studies', 'users'],
+            ['Demand Estimation (Forecasting) & Pricing', 'target'],
+            ['Concept Testing', 'bulb'],
+            ['Business Intelligence', 'search'],
+            ['Consumer Buying Behaviour', 'store'],
+        ],
+        /* Social research (from the existing MART website) */
+        'social_research'   => [
+            'intro'   => 'MART has the unique distinction of undertaking research projects for Corporate, Government & Civil Society clients, spanning domains like livelihood, capacity building and skill development.',
+            'clients' => ['IRRI', 'NABARD', 'OXFAM', 'TATA Chemicals', 'GIZ', 'World Vision India', 'SEA', 'Solidaridad', 'Odisha Forest Department'],
+            'framework' => [
+                ['Situational Awareness', ['Livelihood mapping', 'Value chain assessment', 'Baseline, Midline & Endline studies']],
+                ['Institution & Capacity Building', ['Livelihood augmentation', 'Training & Skill building', 'Farm, off-farm & non-farm based interventions', 'SHGs, JLG, PG & FPO development']],
+                ['Marketing & Brand Building', ['Market Intelligence', 'Development of ICT tools', 'Brand building exercises']],
+                ['Direct Implementation', ['Government projects & Programmes', 'CSR & Corporate projects', 'Joint Implementation']],
+            ],
+        ],
+        'testimonial'       => [
+            'quote'       => 'MART\'s 3i Approach has caught everybody\'s attention… Participatory Rural Appraisal as a tool for Innovative Co-creation is appropriate.',
+            'name'        => 'Dr Urs Herren',
+            'designation' => 'Ambassador, Embassy of Switzerland, Bangladesh',
+        ],
         'approach'          => [
             ['Research', 'Mixed-method studies across villages, haats and households.'],
             ['Analyse', 'Turn field data into segments, patterns and opportunities.'],
