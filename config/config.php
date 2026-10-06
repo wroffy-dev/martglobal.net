@@ -29,5 +29,4 @@ const SITE = [
         'twitter'   => '#',
         'youtube'   => '#',
     ],
-    'knowledge_center_url' => 'https://martglobal.net/mart-knowledge-center/',
 ];

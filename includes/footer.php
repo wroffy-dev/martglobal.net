@@ -21,7 +21,6 @@
           <li><a href="<?= e(url('social')) ?>">Social</a></li>
           <li><a href="<?= e(url('#focus-areas')) ?>">Focus Areas</a></li>
           <li><a href="<?= e(url('#projects')) ?>">Projects</a></li>
-          <li><a href="<?= e(SITE['knowledge_center_url']) ?>">Knowledge Center</a></li>
           <li><a href="<?= e(url('#contact')) ?>">Contact</a></li>
         </ul>
       </div>

@@ -61,7 +61,6 @@ $nav_link = static function (string $key, string $href, string $label) use ($cur
         <?php endforeach; ?>
         <li><?= $nav_link('focus', url('#focus-areas'), 'Focus Areas') ?></li>
         <li><?= $nav_link('projects', url('#projects'), 'Projects') ?></li>
-        <li><a class="nav-link" href="<?= e(SITE['knowledge_center_url']) ?>">Knowledge Center</a></li>
         <li><?= $nav_link('contact', url('#contact'), 'Contact') ?></li>
       </ul>
     </nav>
@@ -97,7 +96,6 @@ $nav_link = static function (string $key, string $href, string $label) use ($cur
     <?php endforeach; ?>
     <a class="m-link" href="<?= e(url('#focus-areas')) ?>">Focus Areas</a>
     <a class="m-link" href="<?= e(url('#projects')) ?>">Projects</a>
-    <a class="m-link" href="<?= e(SITE['knowledge_center_url']) ?>">Knowledge Center</a>
     <a class="m-link" href="<?= e(url('#about')) ?>">About</a>
     <a class="m-link" href="<?= e(url('#contact')) ?>">Contact</a>
   </nav>

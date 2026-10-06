@@ -4,7 +4,7 @@
 
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
-  const desktop = window.matchMedia('(min-width: 1281px)');
+  const desktop = window.matchMedia('(min-width: 1101px)');
 
   /* ---------- Sticky header ---------- */
   const header = $('#siteHeader');
