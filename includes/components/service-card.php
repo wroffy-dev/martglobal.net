@@ -8,7 +8,6 @@ $with_image ??= true;
   <?php endif; ?>
   <span class="service-card-body">
     <span class="service-card-top">
-      <span class="badge badge-<?= e($service['category']) ?>"><?= e(get_category($service['category'])['name']) ?></span>
       <span class="service-card-icon"><?= icon($service['icon']) ?></span>
     </span>
     <strong class="service-card-title"><?= e($service['name']) ?></strong>
