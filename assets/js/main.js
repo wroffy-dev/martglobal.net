@@ -184,34 +184,12 @@
   });
 
   /* ---------- Clients & Partners ---------- */
-  // Option A: sector tabs
-  const cpTabs = $$('[data-cp-tab]');
-  cpTabs.forEach((tab) => tab.addEventListener('click', () => {
-    cpTabs.forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
-    $$('[data-cp-panel]').forEach((p) => { p.hidden = p.dataset.cpPanel !== tab.dataset.cpTab; });
-    if (!desktop.matches) tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-  }));
-  // Option B: sector filter
+  // Sector filter
   $$('[data-cp-filter]').forEach((chip) => chip.addEventListener('click', () => {
     const f = chip.dataset.cpFilter;
     $$('[data-cp-filter]').forEach((c) => { c.classList.toggle('is-active', c === chip); c.setAttribute('aria-pressed', String(c === chip)); });
     $$('[data-cp-sector]').forEach((card) => card.classList.toggle('is-hidden', f !== 'all' && card.dataset.cpSector !== f));
   }));
-  // Option C: highlight the sector in view
-  const jumpLinks = $$('.cp-jump a');
-  if (jumpLinks.length && 'IntersectionObserver' in window) {
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach((en) => {
-        if (!en.isIntersecting) return;
-        jumpLinks.forEach((a) => {
-          const on = a.getAttribute('href') === '#' + en.target.id;
-          a.classList.toggle('is-active', on);
-          if (on) a.scrollIntoView({ block: 'nearest', inline: 'center' });
-        });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    $$('.cp-row').forEach((r) => spy.observe(r));
-  }
 
   /* ---------- Demo forms (validated client-side; no backend in this build) ---------- */
   const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
