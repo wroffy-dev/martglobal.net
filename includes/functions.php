@@ -20,6 +20,13 @@ function asset(string $path): string
     return url('assets/' . ltrim($path, '/'));
 }
 
+/** Asset URL with a file-modified version so browsers reload CSS/JS after every change. */
+function asset_v(string $path): string
+{
+    $file = __DIR__ . '/../assets/' . ltrim($path, '/');
+    return asset($path) . (is_file($file) ? '?v=' . filemtime($file) : '');
+}
+
 /** Absolute URL for canonical / Open Graph tags. */
 function absolute_url(string $path = ''): string
 {

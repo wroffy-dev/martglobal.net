@@ -1,7 +1,6 @@
 <?php /** @var array $project */ ?>
 <article class="project-card reveal" data-category="<?= e($project['category']) ?>">
   <div class="project-media" style="--img:url('<?= e($project['image']) ?>')">
-    <span class="badge badge-<?= e($project['category']) ?>"><?= e(get_category($project['category'])['name']) ?></span>
   </div>
   <div class="project-body">
     <p class="project-meta"><?= icon('pin', 'icon icon-xs') ?> <?= e($project['location']) ?> · <?= e($project['client']) ?></p>

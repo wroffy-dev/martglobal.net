@@ -62,6 +62,6 @@
   </div>
 </footer>
 
-<script src="<?= e(asset('js/main.js')) ?>" defer></script>
+<script src="<?= e(asset_v('js/main.js')) ?>" defer></script>
 </body>
 </html>

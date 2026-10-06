@@ -37,7 +37,7 @@ $nav_link = static function (string $key, string $href, string $label) use ($cur
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= e(asset('css/style.css')) ?>">
+<link rel="stylesheet" href="<?= e(asset_v('css/style.css')) ?>">
 </head>
 <body class="<?= e($body_class) ?>">
 <a class="skip-link" href="#main">Skip to content</a>
